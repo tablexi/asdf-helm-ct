@@ -3,8 +3,8 @@
 set -e
 set -o pipefail
 
-source "$(dirname "$0")/../lib/utils.bash"
-source "$(dirname "$0")/../lib/helpers.bash"
+source "$(dirname "$0")/../lib/utils.sh"
+source "$(dirname "$0")/../lib/helpers.sh"
 
 download_helm_ct() {
   local binary_path="${ASDF_DOWNLOAD_PATH}/helm-ct"
