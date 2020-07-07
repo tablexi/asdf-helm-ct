@@ -13,7 +13,7 @@ install_helm_ct() {
 	if [ -z "${ASDF_DOWNLOAD_PATH:-}" ]; then
 		tmp_download_dir=$(mktemp -d -t 'asdf_ct_XXXXXX')
 		trap 'rm -rf "${tmp_download_dir}"' EXIT
-		log_info "ℹ️  run download script for older version of asdf"
+		echo "run download script for older version of asdf"
 		export ASDF_DOWNLOAD_PATH="${tmp_download_dir}"
 
 		# download
