@@ -22,6 +22,6 @@ jobs:
       - name: asdf_plugin_test
         uses: asdf-vm/actions/plugin-test@v1.0.0
         with:
-          command: helm-cr version
+          command: helm-ct version
         env:
           GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
