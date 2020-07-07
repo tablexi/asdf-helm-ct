@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+set -e
+set -o pipefail
+
+source "$(dirname "$0")/../lib/utils.bash"
+source "$(dirname "$0")/../lib/helpers.bash"
+
+download_helm_ct() {
+  local binary_path="${ASDF_DOWNLOAD_PATH}/helm-ct"
+  local download_url=$(get_download_url)
+
+  if [ "$TMPDIR" = "" ]; then
+    local tmp_download_dir=$(mktemp -d -t helm_ct_XXXXXXX)
+  else
+    local tmp_download_dir=$TMPDIR
+  fi
+
+  local download_path="$tmp_download_dir/$(get_filename)"
+
+  echo "Downloading Helm Chart Testing from ${download_url}"
+  status_code=$(curl --write-out "%{http_code}" \
+		--progress-bar \
+    -Lo $download_path $download_url)
+
+  if [[ ${status_code} -eq 404 ]]; then
+		rm -rf "${ASDF_DOWNLOAD_PATH}"
+    echo "Download ${download_url} failed!"
+    exit 1
+  fi
+
+  echo "Copying binary"
+  tar -zxf ${download_path} --directory $tmp_download_dir
+  cp ${tmp_download_dir}/ct ${binary_path}
+}
+
+get_download_url() {
+  local filename="$(get_filename $(get_platform) ${ASDF_INSTALL_VERSION})"
+  echo "$(get_github_repo)/releases/download/v${ASDF_INSTALL_VERSION}/${filename}"
+}
+
+download_helm_ct
