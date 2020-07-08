@@ -29,6 +29,7 @@ download_helm_ct() {
     exit 1
   fi
 
+  echo "Copying Binary"
   tar -zxf ${download_path} --directory $tmp_download_dir
   cp ${tmp_download_dir}/ct ${binary_path}
   echo "binary_path/download:$binary_path"
