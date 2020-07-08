@@ -17,15 +17,12 @@ install_helm_ct() {
 		bash "$(dirname "$0")/download"
 	fi
 
-  local binary_download_path="$ASDF_DOWNLOAD_PATH/helm-ct"
-  local binary_path="$ASDF_INSTALL_PATH/bin/helm-ct"
+  local binary_download="$ASDF_DOWNLOAD_PATH/ct"
+  local binary_path="$ASDF_INSTALL_PATH/bin"
 
-  echo "binary_download_path/install: $binary_download_path"
-  echo "binary_path/install: $binary_path"
-
-  cp ${binary_download_path} ${binary_path}
-
-  chmod +x ${binary_path}
+  mkdir -p $binary_path
+  cp ${binary_download} $binary_path
+  chmod +x "${binary_path}/ct"
 }
 
 install_helm_ct
