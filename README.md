@@ -7,9 +7,9 @@
 ## Install
 
 ```
-asdf plugin-add helm-cr https://github.com/tablexi/asdf-helm-cr.git
+asdf plugin-add helm-ct https://github.com/tablexi/asdf-helm-ct.git
 ```
 
 ## Use
 
-Check out the [asdf](https://github.com/asdf-vm/asdf) readme for instructions on how to install and manage versions of Helm Chart Releaser.
+Check out the [asdf](https://github.com/asdf-vm/asdf) readme for instructions on how to install and manage versions of Helm Chart Testing.
