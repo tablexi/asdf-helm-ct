@@ -3,14 +3,14 @@
 set -e
 set -o pipefail
 
-source "$(dirname "$0")/../lib/utils.bash"
-source "$(dirname "$0")/../lib/helpers.bash"
+source "$(dirname "$0")/../lib/utils.sh"
+source "$(dirname "$0")/../lib/helpers.sh"
 
 download_helm_ct() {
-  local binary_path="${ASDF_DOWNLOAD_PATH}/helm-ct"
+  local binary_path="${ASDF_DOWNLOAD_PATH}/ct"
   local download_url=$(get_download_url)
 
-  if [ "$TMPDIR" = "" ]; then
+  if [ -z "${TMPDIR:-}" ]; then
     local tmp_download_dir=$(mktemp -d -t helm_ct_XXXXXXX)
   else
     local tmp_download_dir=$TMPDIR
@@ -29,9 +29,9 @@ download_helm_ct() {
     exit 1
   fi
 
-  echo "Copying binary"
   tar -zxf ${download_path} --directory $tmp_download_dir
   cp ${tmp_download_dir}/ct ${binary_path}
+  echo "binary_path/download:$binary_path"
 }
 
 get_download_url() {
