@@ -10,7 +10,7 @@ download_helm_ct() {
   local binary_path="${ASDF_DOWNLOAD_PATH}/ct"
   local download_url=$(get_download_url)
 
-  if [ "$TMPDIR" = "" ]; then
+  if [ -z "${TMPDIR:-}" ]; then
     local tmp_download_dir=$(mktemp -d -t helm_ct_XXXXXXX)
   else
     local tmp_download_dir=$TMPDIR
