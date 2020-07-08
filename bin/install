@@ -20,6 +20,7 @@ install_helm_ct() {
   local binary_download="$ASDF_DOWNLOAD_PATH/ct"
   local binary_path="$ASDF_INSTALL_PATH/bin"
 
+  echo "Installing Binary"
   mkdir -p $binary_path
   cp ${binary_download} $binary_path
   chmod +x "${binary_path}/ct"
